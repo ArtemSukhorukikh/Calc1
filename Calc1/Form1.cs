@@ -350,17 +350,38 @@ namespace Calc1
                 Button17_Click(sender, e);
                 return;
             }
-            var ans = dt.Compute(textBox1.Text, "");
-            textBox1.Clear();
-            string answearInTextBox = ans.ToString();
-            if (answearInTextBox== "∞")
+            try
+            {
+                var ans = dt.Compute(textBox1.Text, "");
+                textBox1.Clear();
+                string answearInTextBox = ans.ToString();
+                if (answearInTextBox == "∞")
+                {
+                    Error();
+                    Button17_Click(sender, e);
+                    return;
+                }
+                answearInTextBox = answearInTextBox.Replace(',', '.');
+                textBox1.Text = answearInTextBox;
+            }
+            catch (Exception)
             {
                 Error();
                 Button17_Click(sender, e);
                 return;
+                throw;
             }
-            answearInTextBox = answearInTextBox.Replace(',', '.');
-            textBox1.Text = answearInTextBox;
+            //var ans = dt.Compute(textBox1.Text, "");
+            //textBox1.Clear();
+            //string answearInTextBox = ans.ToString();
+            //if (answearInTextBox== "∞")
+            //{
+            //    Error();
+            //    Button17_Click(sender, e);
+            //    return;
+            //}
+            //answearInTextBox = answearInTextBox.Replace(',', '.');
+            //textBox1.Text = answearInTextBox;
         }
 
         private bool CheckBracket()
