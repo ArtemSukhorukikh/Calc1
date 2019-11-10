@@ -183,6 +183,7 @@ namespace Calc1
                 int lenght = textBox1.Text.Length - 1;
                 if (lenght == 0)
                 {
+                    inputNumber = false;
                     return;
                 }
                 string text = textBox1.Text;
@@ -393,7 +394,7 @@ namespace Calc1
             {
                 return;
             }
-            if (countOpenBracket==0)
+            if (countOpenBracket==0 && sizeNumber==0)
             {
                 textBox1.Text = textBox1.Text + "(";
                 countOpenBracket++;
@@ -416,7 +417,7 @@ namespace Calc1
                     countOpenBracket++;
                 }
             }
-            else
+            else if(CheckLastOperation(text[lenght]) == true)
             {
                 textBox1.Text = textBox1.Text + "(";
                 countOpenBracket++;
